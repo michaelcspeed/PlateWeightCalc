@@ -1,0 +1,293 @@
+
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/scroll"
+	android:layout_width="match_parent"
+	android:layout_height="fill_parent">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical">
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="fill_parent">
+			
+			<TextView
+				android:id="@+id/result"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="0kg"
+				android:layout_centerInParent="true"
+				android:textAppearance="?android:attr/textAppearanceLarge" />
+
+			<Button
+				android:id="@+id/clearButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_alignParentTop="true"
+				android:text="x" />
+
+
+
+		</RelativeLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:padding="10dp"
+			android:weightSum="6">
+			<TextView
+				android:id="@+id/textView1"
+				android:layout_weight="3"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="1.25kg"
+				android:singleLine="true"
+				android:ellipsize="none"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+			<Button
+				android:id="@+id/minusPlus1P25"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="-" />
+
+			<EditText
+				android:layout_weight="1"
+				android:id="@+id/weightCount1P25"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+
+
+				android:hint="No of plates"
+				android:inputType="number">
+
+			</EditText>
+
+			<Button
+				android:id="@+id/buttonPlus1P25"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="+" />
+
+		</LinearLayout>
+
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:padding="10dp"
+			android:weightSum="6">
+			<TextView
+				android:id="@+id/textView1"
+				android:layout_weight="3"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="2.5kg"
+				android:singleLine="true"
+				android:ellipsize="none"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+			<Button
+				android:id="@+id/minusPlus2P5"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="-" />
+
+			<EditText
+				android:layout_weight="1"
+				android:id="@+id/weightCount2P5"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+
+
+				android:inputType="number"
+				android:hint="No of plates">
+			</EditText>
+
+			<Button
+				android:id="@+id/buttonPlus2P5"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="+" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:padding="10dp"
+			android:weightSum="6">
+			<TextView
+				android:id="@+id/textView1"
+				android:layout_weight="3"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="5kg"
+				android:singleLine="true"
+				android:ellipsize="none"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+			<Button
+				android:id="@+id/minusPlus5"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="-" />
+
+			<EditText
+				android:layout_weight="1"
+				android:id="@+id/weightCount5"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+
+
+				android:inputType="number"
+				android:hint="No of plates">
+			</EditText>
+
+			<Button
+				android:id="@+id/buttonPlus5"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="+" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:padding="10dp"
+			android:weightSum="6">
+			<TextView
+				android:id="@+id/textView1"
+				android:layout_weight="3"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="10kg"
+				android:singleLine="true"
+				android:ellipsize="none"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+			<Button
+				android:id="@+id/minusPlus10"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="-" />
+
+			<EditText
+				android:layout_weight="1"
+				android:id="@+id/weightCount10"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+
+
+				android:inputType="number"
+				android:hint="No of plates">
+			</EditText>
+
+			<Button
+				android:id="@+id/buttonPlus10"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="+" />
+
+		</LinearLayout>
+
+
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:padding="10dp"
+			android:weightSum="6">
+			<TextView
+				android:id="@+id/textView1"
+				android:layout_weight="3"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="15kg"
+				android:singleLine="true"
+				android:ellipsize="none"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+			<Button
+				android:id="@+id/minusPlus15"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="-" />
+
+			<EditText
+				android:layout_weight="1"
+				android:id="@+id/weightCount15"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+
+
+				android:inputType="number"
+				android:hint="No of plates">
+			</EditText>
+
+			<Button
+				android:id="@+id/buttonPlus15"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="+" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:padding="10dp"
+			android:weightSum="6">
+			<TextView
+				android:id="@+id/textView1"
+				android:layout_weight="3"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="20kg"
+				android:singleLine="true"
+				android:ellipsize="none"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+			<Button
+				android:id="@+id/minusPlus20"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="-" />
+
+			<EditText
+				android:layout_weight="1"
+				android:id="@+id/weightCount20"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+
+
+				android:inputType="number"
+				android:hint="No of plates">
+			</EditText>
+
+			<Button
+				android:id="@+id/buttonPlus20"
+				android:layout_weight="1"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:text="+" />
+
+		</LinearLayout>
+
+	</LinearLayout>
+</ScrollView>
