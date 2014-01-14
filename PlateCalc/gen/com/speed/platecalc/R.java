@@ -21,10 +21,21 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int black1p25=0x7f020000;
+        public static final int black2p5=0x7f020001;
+        public static final int black5=0x7f020002;
+        public static final int blue=0x7f020003;
+        public static final int blue2p5=0x7f020004;
+        public static final int green=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int image4191=0x7f020007;
+        public static final int red=0x7f020008;
+        public static final int red5=0x7f020009;
+        public static final int yellow=0x7f02000a;
+        public static final int yellow1p25=0x7f02000b;
     }
     public static final class id {
-        public static final int action_settings=0x7f080018;
+        public static final int action_settings=0x7f080019;
         public static final int buttonPlus10=0x7f08000f;
         public static final int buttonPlus15=0x7f080012;
         public static final int buttonPlus1P25=0x7f080006;
@@ -32,13 +43,14 @@ public final class R {
         public static final int buttonPlus2P5=0x7f080009;
         public static final int buttonPlus5=0x7f08000c;
         public static final int clearButton=0x7f080002;
+        public static final int holder=0x7f080017;
         public static final int minusPlus10=0x7f08000d;
         public static final int minusPlus15=0x7f080010;
         public static final int minusPlus1P25=0x7f080004;
         public static final int minusPlus20=0x7f080013;
         public static final int minusPlus2P5=0x7f080007;
         public static final int minusPlus5=0x7f08000a;
-        public static final int pager=0x7f080017;
+        public static final int pager=0x7f080018;
         public static final int result=0x7f080001;
         public static final int scroll=0x7f080000;
         public static final int textView1=0x7f080003;
@@ -48,7 +60,7 @@ public final class R {
         public static final int weightCount20=0x7f080014;
         public static final int weightCount2P5=0x7f080008;
         public static final int weightCount5=0x7f08000b;
-        public static final int weightInput=0x7f080016;
+        public static final int weightEnter=0x7f080016;
     }
     public static final class layout {
         public static final int after_fragment=0x7f030000;
