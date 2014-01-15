@@ -6,29 +6,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class AfterFragment extends Fragment implements OnClickListener {
-	private Button minusPlus1P25;
+	private ImageButton minusPlus1P25;
 	private EditText weightCount1P25;
-	private Button buttonPlus1P25;
-	private Button minusPlus2P5;
+	private ImageButton buttonPlus1P25;
+	private ImageButton minusPlus2P5;
 	private EditText weightCount2P5;
-	private Button buttonPlus2P5;
-	private Button minusPlus5;
+	private ImageButton buttonPlus2P5;
+	private ImageButton minusPlus5;
 	private EditText weightCount5;
-	private Button buttonPlus5;
-	private Button minusPlus10;
+	private ImageButton buttonPlus5;
+	private ImageButton minusPlus10;
 	private EditText weightCount10;
-	private Button buttonPlus10;
-	private Button minusPlus15;
+	private ImageButton buttonPlus10;
+	private ImageButton minusPlus15;
 	private EditText weightCount15;
-	private Button buttonPlus15;
-	private Button minusPlus20;
+	private ImageButton buttonPlus15;
+	private ImageButton minusPlus20;
 	private EditText weightCount20;
-	private Button buttonPlus20;
+	private ImageButton buttonPlus20;
 	private View rootView;
 	private TextView resultText;
 
@@ -38,37 +38,41 @@ public class AfterFragment extends Fragment implements OnClickListener {
 	int count15 = 0;
 	int count20 = 0;
 	int count5 = 0;
-	private Button clearButton;
+	private ImageButton clearButton;
+	private ImageButton minusPlus25;
+	private EditText weightCount25;
+	private ImageButton buttonPlus25;
+	private int count25;
 
-	/**
-	 * Find the Views in the layout<br />
-	 * <br />
-	 * Auto-created on 2014-01-06 20:31:29 by Android Layout Finder
-	 * (http://www.buzzingandroid.com/tools/android-layout-finder)
-	 */
 	private void findViews() {
-		minusPlus1P25 = (Button) rootView.findViewById(R.id.minusPlus1P25);
+		minusPlus1P25 = (ImageButton) rootView.findViewById(R.id.minusPlus1P25);
 		weightCount1P25 = (EditText) rootView
 				.findViewById(R.id.weightCount1P25);
-		buttonPlus1P25 = (Button) rootView.findViewById(R.id.buttonPlus1P25);
-		minusPlus2P5 = (Button) rootView.findViewById(R.id.minusPlus2P5);
+		buttonPlus1P25 = (ImageButton) rootView
+				.findViewById(R.id.buttonPlus1P25);
+		minusPlus2P5 = (ImageButton) rootView.findViewById(R.id.minusPlus2P5);
 		weightCount2P5 = (EditText) rootView.findViewById(R.id.weightCount2P5);
-		buttonPlus2P5 = (Button) rootView.findViewById(R.id.buttonPlus2P5);
-		minusPlus5 = (Button) rootView.findViewById(R.id.minusPlus5);
+		buttonPlus2P5 = (ImageButton) rootView.findViewById(R.id.buttonPlus2P5);
+		minusPlus5 = (ImageButton) rootView.findViewById(R.id.minusPlus5);
 		weightCount5 = (EditText) rootView.findViewById(R.id.weightCount5);
-		buttonPlus5 = (Button) rootView.findViewById(R.id.buttonPlus5);
-		minusPlus10 = (Button) rootView.findViewById(R.id.minusPlus10);
+		buttonPlus5 = (ImageButton) rootView.findViewById(R.id.buttonPlus5);
+		minusPlus10 = (ImageButton) rootView.findViewById(R.id.minusPlus10);
 		weightCount10 = (EditText) rootView.findViewById(R.id.weightCount10);
-		buttonPlus10 = (Button) rootView.findViewById(R.id.buttonPlus10);
-		minusPlus15 = (Button) rootView.findViewById(R.id.minusPlus15);
+		buttonPlus10 = (ImageButton) rootView.findViewById(R.id.buttonPlus10);
+		minusPlus15 = (ImageButton) rootView.findViewById(R.id.minusPlus15);
 		weightCount15 = (EditText) rootView.findViewById(R.id.weightCount15);
-		buttonPlus15 = (Button) rootView.findViewById(R.id.buttonPlus15);
-		minusPlus20 = (Button) rootView.findViewById(R.id.minusPlus20);
+		buttonPlus15 = (ImageButton) rootView.findViewById(R.id.buttonPlus15);
+		minusPlus20 = (ImageButton) rootView.findViewById(R.id.minusPlus20);
 		weightCount20 = (EditText) rootView.findViewById(R.id.weightCount20);
-		buttonPlus20 = (Button) rootView.findViewById(R.id.buttonPlus20);
+		buttonPlus20 = (ImageButton) rootView.findViewById(R.id.buttonPlus20);
+		minusPlus25 = (ImageButton) rootView.findViewById(R.id.minusPlus25);
+		weightCount25 = (EditText) rootView.findViewById(R.id.weightCount25);
+		buttonPlus25 = (ImageButton) rootView.findViewById(R.id.buttonPlus25);
 		resultText = (TextView) rootView.findViewById(R.id.result);
-		clearButton = (Button) rootView.findViewById(R.id.clearButton); 
+		clearButton = (ImageButton) rootView.findViewById(R.id.clearButton);
 
+		minusPlus25.setOnClickListener(this);
+		buttonPlus25.setOnClickListener(this);
 		minusPlus1P25.setOnClickListener(this);
 		buttonPlus1P25.setOnClickListener(this);
 		minusPlus2P5.setOnClickListener(this);
@@ -85,7 +89,7 @@ public class AfterFragment extends Fragment implements OnClickListener {
 	}
 
 	/**
-	 * Handle button click events<br />
+	 * Handle ImageButton click events<br />
 	 * <br />
 	 * Auto-created on 2014-01-06 20:31:29 by Android Layout Finder
 	 * (http://www.buzzingandroid.com/tools/android-layout-finder)
@@ -146,19 +150,28 @@ public class AfterFragment extends Fragment implements OnClickListener {
 			// Handle clicks for buttonPlus20
 			count20++;
 			weightCount20.setText(String.valueOf(count20));
-		}
-		else if(v == clearButton) {
+		} else if (v == buttonPlus25) {
+			// Handle clicks for buttonPlus25
+			count25++;
+			weightCount25.setText(String.valueOf(count25));
+		} else if (v == minusPlus25) {
+			// Handle clicks for buttonPlus25
+			count25++;
+			weightCount25.setText(String.valueOf(count25));
+		} else if (v == clearButton) {
 			weightCount10.setText("");
 			weightCount15.setText("");
 			weightCount1P25.setText("");
 			weightCount20.setText("");
 			weightCount2P5.setText("");
 			weightCount5.setText("");
+			weightCount25.setText("");
 			count10 = 0;
+			count25 = 0;
 			count15 = 0;
 			count1P25 = 0;
 			count20 = 0;
-			count2P5  = 0;
+			count2P5 = 0;
 			count5 = 0;
 		}
 
@@ -167,7 +180,7 @@ public class AfterFragment extends Fragment implements OnClickListener {
 
 	private void updateResult() {
 		double result = (10 * count10) + (15 * count15) + (1.25 * count1P25)
-				+ (20 * count20) + (2.5 * count2P5) + (5 * count5);
+				+ (20 * count20) + (2.5 * count2P5) + (5 * count5) + (25 * count25);
 		resultText.setText(String.valueOf(result) + "kg");
 	}
 
