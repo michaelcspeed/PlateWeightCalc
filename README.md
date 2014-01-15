@@ -11,14 +11,12 @@ After  - Select the weights that are on the bar and view the weight you lifted.
 
 To do:
 ------
-Add variable bar weight.
+Finish preference screen.
+
+Add sets option to BEFORE.
 
 Different/better images for plates at different dpis
 
 Better style
 
-Enter bar weight
-
 +/- button for input
-
-Input list of weights for quick sets
