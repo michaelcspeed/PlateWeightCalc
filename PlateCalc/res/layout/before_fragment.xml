@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Total weight (kg)"
-            android:maxLength="3"
+            android:maxLength="5"
             android:inputType="numberDecimal" />
 
         <EditText
@@ -53,7 +53,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:maxLength="3"
+            android:maxLength="5"
             android:hint="Bar weight (kg)"
             android:inputType="numberDecimal" />
     </LinearLayout>

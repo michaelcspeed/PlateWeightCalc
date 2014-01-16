@@ -4,9 +4,9 @@ package com.speed.platecalc;
 
 import java.util.ArrayList;
 
-import com.speed.platecalc.R.id;
-
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,6 +28,7 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 	private EditText weightEditText;
 	private EditText barEditText;
 	private int barWeight = 0;
+	private SharedPreferences mySharedPreferences;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -35,6 +36,9 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 		super.onCreate(savedInstanceState);
 		View rootView = inflater.inflate(R.layout.before_fragment, container,
 				false);
+
+		mySharedPreferences = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
 
 		holder = (LinearLayout) rootView.findViewById(R.id.holder);
 		weightEditText = (EditText) rootView.findViewById(R.id.weightEnter);
@@ -46,6 +50,9 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 
 	private void createViews(ArrayList<Double> weights) {
 
+		boolean colouredWeights = mySharedPreferences.getBoolean(
+				"coloured_weights", false);
+
 		for (int i = 0; i < weights.size(); i++) {
 			if (weights.get(i) == 25) {
 				ImageView a25 = new ImageView(getActivity());
@@ -53,7 +60,8 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 				a25.setImageDrawable(getResources().getDrawable(R.drawable.red));
 				holder.addView(a25);
 				a25.setOnClickListener(this);
-				a25.setTag("25");;
+				a25.setTag("25");
+				;
 			}
 			if (weights.get(i) == 20) {
 				ImageView a25 = new ImageView(getActivity());
@@ -85,8 +93,12 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 			if (weights.get(i) == 5) {
 				ImageView a25 = new ImageView(getActivity());
 				a25.setLayoutParams(new LayoutParams(100, 800));
-				a25.setImageDrawable(getResources().getDrawable(
-						R.drawable.black5));
+				if (colouredWeights)
+					a25.setImageDrawable(getResources().getDrawable(
+							R.drawable.red5));
+				else
+					a25.setImageDrawable(getResources().getDrawable(
+							R.drawable.black5));
 				holder.addView(a25);
 				a25.setOnClickListener(this);
 				a25.setTag("5");
@@ -94,8 +106,12 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 			if (weights.get(i) == 2.5) {
 				ImageView a25 = new ImageView(getActivity());
 				a25.setLayoutParams(new LayoutParams(50, 400));
-				a25.setImageDrawable(getResources().getDrawable(
-						R.drawable.black2p5));
+				if (colouredWeights)
+					a25.setImageDrawable(getResources().getDrawable(
+							R.drawable.blue2p5));
+				else
+					a25.setImageDrawable(getResources().getDrawable(
+							R.drawable.black2p5));
 				holder.addView(a25);
 				a25.setOnClickListener(this);
 				a25.setTag("2.5");
@@ -103,8 +119,12 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 			if (weights.get(i) == 1.25) {
 				ImageView a25 = new ImageView(getActivity());
 				a25.setLayoutParams(new LayoutParams(40, 300));
-				a25.setImageDrawable(getResources().getDrawable(
-						R.drawable.black1p25));
+				if (colouredWeights)
+					a25.setImageDrawable(getResources().getDrawable(
+							R.drawable.yellow1p25));
+				else
+					a25.setImageDrawable(getResources().getDrawable(
+							R.drawable.black1p25));
 				holder.addView(a25);
 				a25.setOnClickListener(this);
 				a25.setTag("1.25");
@@ -165,34 +185,50 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 	@Override
 	public void afterTextChanged(Editable s) {
 
+		updateWeightImages();
+
+	}
+
+	private void updateWeightImages() {
+
+		String barWeight;
+		int barWeightNumber;
+		double liftWeightNumber;
+
 		// Let's not be ridiculous
-		if (s.length() < 4) {
-			holder.removeAllViews();
 
-			// Get string of lift weight
-			String value = weightEditText.getText().toString();
+		holder.removeAllViews();
 
-			// Get String of bar weight
-			String barWeightString = barEditText.getText().toString();
-			int barWeight = 0;
-			// If it's not empty
-			if (barWeightString.compareTo("") != 0) {
-				barWeight = Integer.valueOf(barWeightString);
-			}
-
-			// If lift weight is not empty
-			if (value.compareTo("") != 0) {
-				Double d = Double.valueOf(value);
-
-				ArrayList<Double> aL = calculateWeights(d, barWeight);
-
-				createViews(aL);
-
-				aL.clear();
-
-			}
+		if (barEditText.getText().toString().compareTo("") == 0)
+			barWeight = mySharedPreferences
+					.getString("default_bar_weight", "0");
+		else {
+			barWeight = barEditText.getText().toString();
 		}
 
+		barWeightNumber = Integer.parseInt(barWeight);
+
+		if (weightEditText.getText().toString().compareTo("") == 0)
+			liftWeightNumber = 0;
+		else
+			liftWeightNumber = Double.parseDouble(weightEditText.getText()
+					.toString());
+
+		ArrayList<Double> aL = calculateWeights(liftWeightNumber,
+				barWeightNumber);
+
+		createViews(aL);
+
+		aL.clear();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		updateWeightImages();
+		barEditText.setHint("Bar Weight ("
+				+ mySharedPreferences.getString("default_bar_weight", "0")
+				+ "kg)");
 	}
 
 	@Override
@@ -206,7 +242,8 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 
 	@Override
 	public void onClick(View v) {
-		Toast.makeText(getActivity(), v.getTag().toString(), Toast.LENGTH_SHORT).show();
+		Toast.makeText(getActivity(), v.getTag().toString(), Toast.LENGTH_SHORT)
+				.show();
 	}
 
 }
