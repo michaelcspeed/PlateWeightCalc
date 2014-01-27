@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Weights" >
+        <CheckBoxPreference
+            android:key="coloured_weights"
+            android:summary="Use Olympic colours for smaller weights instead of black."
+            android:title="Smaller weights have colours" />
+
+        <EditTextPreference
+            android:dialogTitle="Default weight of the bar"
+            android:inputType="number"
+            android:key="default_bar_weight"
+            android:title="Default weight of the bar" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="My Sets" >
+        <CheckBoxPreference
+            android:key="custom_sets_on"
+            android:summary="Pre-populate the weights you want to lift for fast access."
+            android:title="Use custom set" />
+       <EditTextPreference
+            android:dialogTitle="Enter your weights (comma separated)"
+            android:key="custom_set"
+            android:title="Current set" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
