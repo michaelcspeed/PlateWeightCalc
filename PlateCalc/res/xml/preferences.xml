@@ -20,6 +20,7 @@
        <EditTextPreference
             android:dialogTitle="Enter your weights (comma separated)"
             android:key="custom_set"
+            android:dependency="custom_sets_on"
             android:title="Current set" />
     </PreferenceCategory>
 
