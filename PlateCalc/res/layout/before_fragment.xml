@@ -47,6 +47,14 @@
             android:hint="Total weight (kg)"
             android:maxLength="5"
             android:inputType="numberDecimal" />
+        
+        <Spinner
+            android:id="@+id/weighSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:hint="Total weight (kg)" />
 
         <EditText
             android:id="@+id/barEnter"

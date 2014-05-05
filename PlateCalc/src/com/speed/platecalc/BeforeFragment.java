@@ -1,7 +1,5 @@
 package com.speed.platecalc;
 
-//
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,19 +16,26 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class BeforeFragment extends Fragment implements TextWatcher,
-		OnClickListener {
+		OnClickListener, OnItemSelectedListener {
 
 	private LinearLayout holder;
 	private EditText weightEditText;
 	private EditText barEditText;
 	private int barWeight = 0;
 	private SharedPreferences mySharedPreferences;
+	private Spinner spinner;
+	private List<String> itemsAsString;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -44,6 +49,8 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 
 		holder = (LinearLayout) rootView.findViewById(R.id.holder);
 		weightEditText = (EditText) rootView.findViewById(R.id.weightEnter);
+		spinner = (Spinner) rootView.findViewById(R.id.weighSpinner);
+		spinner.setOnItemSelectedListener(this);
 		weightEditText.addTextChangedListener(this);
 		barEditText = (EditText) rootView.findViewById(R.id.barEnter);
 		barEditText.addTextChangedListener(this);
@@ -197,8 +204,7 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 		int barWeightNumber;
 		double liftWeightNumber;
 
-		// Let's not be ridiculous
-
+		// Start from a fresh layout
 		holder.removeAllViews();
 
 		if (barEditText.getText().toString().compareTo("") == 0)
@@ -210,11 +216,25 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 
 		barWeightNumber = Integer.parseInt(barWeight);
 
-		if (weightEditText.getText().toString().compareTo("") == 0)
-			liftWeightNumber = 0;
-		else
-			liftWeightNumber = Double.parseDouble(weightEditText.getText()
-					.toString());
+		// check if it's the custom set or a normal text box
+		if (!isSpinnerShowing()) {
+			if (weightEditText.getText().toString().compareTo("") == 0)
+				liftWeightNumber = 0;
+			else
+				liftWeightNumber = Double.parseDouble(weightEditText.getText()
+						.toString());
+		} else {
+
+			try {
+				Spinner sp = spinner;
+				Object o = sp.getSelectedItem(); //TODO is null for some reason!
+				String s = o.toString();
+				liftWeightNumber = Double.parseDouble(s);
+			} catch (Exception e) {
+				liftWeightNumber = 90;
+			}
+
+		}
 
 		ArrayList<Double> aL = calculateWeights(liftWeightNumber,
 				barWeightNumber);
@@ -224,12 +244,23 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 		aL.clear();
 	}
 
+	private boolean isSpinnerShowing() {
+		return mySharedPreferences.getBoolean("custom_sets_on", false);
+	}
+
 	@Override
 	public void onResume() {
 		super.onResume();
+
+		// change edittext to dropdown
+		weightEditText.setVisibility(View.VISIBLE);
+		spinner.setVisibility(View.GONE);
+
 		updateWeightImages();
 		setBarHint();
-		getSetList();
+
+		if (mySharedPreferences.getBoolean("custom_sets_on", false))
+			getSetList();
 	}
 
 	private void setBarHint() {
@@ -240,20 +271,44 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 
 	private void getSetList() {
 		String list = mySharedPreferences.getString("custom_set", "");
-		
-		if(list.compareTo("") == 0)
-		Toast.makeText(getActivity(), list, Toast.LENGTH_LONG).show();
-		
-		parseList(list);
-		
+
+		if (!list.equals("")) {
+			Toast.makeText(getActivity(), list, Toast.LENGTH_LONG).show();
+			List<Double> listAsDouble = parseList(list);
+			if (listAsDouble != null) {
+				// change edittext to dropdown
+				weightEditText.setVisibility(View.GONE);
+				spinner.setVisibility(View.VISIBLE);
+				ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+						getActivity(),
+						android.R.layout.simple_dropdown_item_1line);
+				adapter.addAll(itemsAsString);
+				spinner.setAdapter(adapter);
+
+			}
+		}
+
 	}
 
-	private void parseList(String list) {
+	private List<Double> parseList(String list) {
 
-		List<String> items = Arrays.asList(list.split(","));
-		
-		List<>
-		
+		itemsAsString = Arrays.asList(list.split(","));
+
+		List<String> items = itemsAsString;
+
+		List<Double> itemsAsDouble = new ArrayList<Double>();
+
+		for (String string : items) {
+			try {
+				Double temp = Double.parseDouble(string);
+				itemsAsDouble.add(temp);
+			} catch (NumberFormatException e) {
+				// if it's invalid, return null
+				return null;
+			}
+		}
+		return itemsAsDouble;
+
 	}
 
 	@Override
@@ -269,6 +324,18 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 	public void onClick(View v) {
 		Toast.makeText(getActivity(), v.getTag().toString(), Toast.LENGTH_SHORT)
 				.show();
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+			long arg3) {
+
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		updateWeightImages();
+
 	}
 
 }
