@@ -15,6 +15,15 @@ public class PrefsFragment extends PreferenceFragment {
 
 	}
 
-	
+	@Override
+	public void onResume() {
+		super.onResume();
+		setDefaultWeightHint();
+	}
+
+	private void setDefaultWeightHint() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

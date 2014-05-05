@@ -156,7 +156,8 @@ public class AfterFragment extends Fragment implements OnClickListener {
 			weightCount25.setText(String.valueOf(count25));
 		} else if (v == minusPlus25) {
 			// Handle clicks for buttonPlus25
-			count25++;
+			if (count25 != 0)
+				count25--;
 			weightCount25.setText(String.valueOf(count25));
 		} else if (v == clearButton) {
 			weightCount10.setText("");

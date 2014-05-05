@@ -3,6 +3,8 @@ package com.speed.platecalc;
 //
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -226,9 +228,32 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 	public void onResume() {
 		super.onResume();
 		updateWeightImages();
+		setBarHint();
+		getSetList();
+	}
+
+	private void setBarHint() {
 		barEditText.setHint("Bar Weight ("
 				+ mySharedPreferences.getString("default_bar_weight", "0")
 				+ "kg)");
+	}
+
+	private void getSetList() {
+		String list = mySharedPreferences.getString("custom_set", "");
+		
+		if(list.compareTo("") == 0)
+		Toast.makeText(getActivity(), list, Toast.LENGTH_LONG).show();
+		
+		parseList(list);
+		
+	}
+
+	private void parseList(String list) {
+
+		List<String> items = Arrays.asList(list.split(","));
+		
+		List<>
+		
 	}
 
 	@Override
