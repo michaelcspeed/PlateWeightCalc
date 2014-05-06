@@ -1,69 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical" >
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@android:color/white"
+	android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:background="@android:color/white" >
+	<ScrollView
+		android:id="@+id/scrollView1"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+		android:background="@android:color/white">
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical" >
+		<LinearLayout
+			android:id="@+id/linearLayout1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/holder"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:gravity="center"
-                android:orientation="horizontal" >
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+			<LinearLayout
+				android:id="@+id/holder"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@android:color/white"
+				android:gravity="center"
+				android:orientation="horizontal">
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
 
-    <LinearLayout
-        android:id="@+id/texts"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/white"
-        android:orientation="horizontal"
-        android:weightSum="2" >
+	<LinearLayout
+		android:id="@+id/texts"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:background="@android:color/white"
+		android:orientation="horizontal"
+		android:weightSum="2">
 
-        <EditText
-            android:id="@+id/weightEnter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Total weight (kg)"
-            android:maxLength="5"
-            android:inputType="numberDecimal" />
-        
-        <Spinner
-            android:id="@+id/weighSpinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:visibility="gone"
-            android:hint="Total weight (kg)" />
+		<EditText
+			android:id="@+id/weightEnter"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:hint="Total weight (kg)"
+			android:maxLength="5"
+			android:inputType="numberDecimal" />
 
-        <EditText
-            android:id="@+id/barEnter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxLength="5"
-            android:hint="Bar weight (kg)"
-            android:inputType="numberDecimal" />
-    </LinearLayout>
+		<LinearLayout
+		    android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:id="@+id/spinnerLayout"
+			android:layout_weight="1"
+			android:weightSum="4">
+			<Spinner
+				android:id="@+id/weighSpinner"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="3"
+				/>
+			
+			<TextView
+				android:id="@+id/textView1"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:singleLine="true"
+				android:layout_weight="1"
+				android:text="(kg)"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+		</LinearLayout>
+
+		<EditText
+			android:id="@+id/barEnter"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:maxLength="5"
+			android:hint="Bar weight (kg)"
+			android:inputType="numberDecimal" />
+	</LinearLayout>
 
 </RelativeLayout>

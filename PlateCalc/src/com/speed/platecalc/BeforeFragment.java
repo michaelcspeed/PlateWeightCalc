@@ -2,6 +2,7 @@ package com.speed.platecalc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import android.content.SharedPreferences;
@@ -36,6 +37,7 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 	private SharedPreferences mySharedPreferences;
 	private Spinner spinner;
 	private List<String> itemsAsString;
+	private LinearLayout spinnerLayout;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 		weightEditText.addTextChangedListener(this);
 		barEditText = (EditText) rootView.findViewById(R.id.barEnter);
 		barEditText.addTextChangedListener(this);
+		spinnerLayout = (LinearLayout) rootView.findViewById(R.id.spinnerLayout);
 		return rootView;
 	}
 
@@ -227,7 +230,8 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 
 			try {
 				Spinner sp = spinner;
-				Object o = sp.getSelectedItem(); //TODO is null for some reason!
+				Object o = sp.getSelectedItem(); // TODO is null for some
+													// reason!
 				String s = o.toString();
 				liftWeightNumber = Double.parseDouble(s);
 			} catch (Exception e) {
@@ -254,7 +258,7 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 
 		// change edittext to dropdown
 		weightEditText.setVisibility(View.VISIBLE);
-		spinner.setVisibility(View.GONE);
+		spinnerLayout.setVisibility(View.GONE);
 
 		updateWeightImages();
 		setBarHint();
@@ -273,16 +277,19 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 		String list = mySharedPreferences.getString("custom_set", "");
 
 		if (!list.equals("")) {
-			Toast.makeText(getActivity(), list, Toast.LENGTH_LONG).show();
+			// Toast.makeText(getActivity(), list, Toast.LENGTH_LONG).show();
 			List<Double> listAsDouble = parseList(list);
+			
 			if (listAsDouble != null) {
 				// change edittext to dropdown
 				weightEditText.setVisibility(View.GONE);
-				spinner.setVisibility(View.VISIBLE);
+				spinnerLayout.setVisibility(View.VISIBLE);
+
 				ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-						getActivity(),
-						android.R.layout.simple_dropdown_item_1line);
+						getActivity(), R.layout.simple_spinner_layout);
 				adapter.addAll(itemsAsString);
+				
+				
 				spinner.setAdapter(adapter);
 
 			}
@@ -307,6 +314,8 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 				return null;
 			}
 		}
+		
+				
 		return itemsAsDouble;
 
 	}
@@ -334,7 +343,6 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		
 
 	}
 
