@@ -1,4 +1,4 @@
-PlateWeightCalc
+Pleight
 ===============
 
 An Android App to calculate which Olympic weights you need at the gym.
@@ -9,12 +9,10 @@ Before - Type in the weight you want to lift and view the weights to put on eith
 
 After  - Select the weights that are on the bar and view the weight you lifted.
 
+Preference Screen
+
 To do:
-------
-Finish preference screen.
-
-Add sets option to BEFORE.
-
+----------
 Different/better images for plates at different dpis
 
 Better style
