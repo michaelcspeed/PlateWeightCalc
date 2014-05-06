@@ -329,12 +329,12 @@ public class BeforeFragment extends Fragment implements TextWatcher,
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
-
+		updateWeightImages();
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		updateWeightImages();
+		
 
 	}
 
