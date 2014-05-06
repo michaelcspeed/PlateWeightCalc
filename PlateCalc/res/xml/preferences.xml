@@ -7,7 +7,7 @@
             android:title="Smaller weights have colours" />
 
         <EditTextPreference
-            android:dialogTitle="Default weight of the bar"
+            android:dialogTitle="Default weight of the bar (kg)"
             android:inputType="number"
             android:key="default_bar_weight"
             android:title="Default weight of the bar" />
