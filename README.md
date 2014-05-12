@@ -2,6 +2,8 @@ Pleight
 ===============
 
 An Android App to calculate which Olympic weights you need at the gym.
+
+View on the Play Store:
 https://play.google.com/store/apps/details?id=com.speed.platecalc
 
 Currently
